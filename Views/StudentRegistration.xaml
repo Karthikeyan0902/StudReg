@@ -1,0 +1,157 @@
+﻿<Window
+    x:Class="Registration.Views.StudentsRegistrationView"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    Title="Student Registration"
+    Width="400"
+    Height="450"
+    WindowStartupLocation="CenterScreen">
+
+    <Grid>
+        <Grid.Background>
+            <ImageBrush ImageSource="F:\WpfTaask\Registration\Images\class.jpg" Stretch="Fill" />
+        </Grid.Background>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="160" />
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto" />
+            <RowDefinition Height="auto" />
+            <RowDefinition Height="auto" />
+            <RowDefinition Height="auto" />
+            <RowDefinition Height="auto" />
+            <RowDefinition Height="auto" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+
+        <TextBlock
+            Grid.Row="0"
+            Grid.Column="0"
+            Grid.ColumnSpan="2"
+            Margin="5"
+            HorizontalAlignment="Center"
+            FontSize="20"
+            FontWeight="Bold"
+            Text="Student Registration" />
+
+        <TextBlock
+            Grid.Row="1"
+            Grid.Column="0"
+            Margin="5"
+            FontSize="15"
+            FontWeight="Bold"
+            Text="ID:" />
+        <TextBlock
+            Grid.Row="2"
+            Grid.Column="0"
+            Margin="5"
+            FontSize="15"
+            FontWeight="Bold"
+            Text="Name:" />
+        <TextBlock
+            Grid.Row="3"
+            Grid.Column="0"
+            Margin="5"
+            FontSize="15"
+            FontWeight="Bold"
+            Text="Email:" />
+        <TextBlock
+            Grid.Row="4"
+            Grid.Column="0"
+            Margin="5"
+            FontSize="15"
+            FontWeight="Bold"
+            Text="Phone Number:" />
+
+        <TextBox
+            x:Name="id_txt"
+            Grid.Row="1"
+            Grid.Column="1"
+            Margin="5"
+            FontSize="17"
+            Text="{Binding SelectedStudent.Id, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+
+        <TextBox
+            x:Name="name_txt"
+            Grid.Row="2"
+            Grid.Column="1"
+            Margin="5"
+            FontSize="17"
+            Text="{Binding SelectedStudent.Name, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+
+        <TextBox
+            x:Name="email_txt"
+            Grid.Row="3"
+            Grid.Column="1"
+            Margin="5"
+            FontSize="17"
+            Text="{Binding SelectedStudent.Email, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+
+        <TextBox
+            x:Name="phno_txt"
+            Grid.Row="4"
+            Grid.Column="1"
+            Margin="5"
+            FontSize="17"
+            Text="{Binding SelectedStudent.Phno, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+
+        <StackPanel
+            Grid.Row="5"
+            Grid.Column="1"
+            Margin="5"
+            Orientation="Horizontal">
+            <Button
+                x:Name="AddBtn"
+                Width="45"
+                Height="35"
+                Margin="5"
+                Command="{Binding AddStudentCommand}"
+                Content="Add"
+                FontWeight="Bold" />
+
+            <Button
+                x:Name="UpdateBtn"
+                Margin="5"
+                Command="{Binding UpdateStudentCommand}"
+                Content="Update"
+                FontWeight="Bold" />
+
+            <Button
+                x:Name="DeleteBtn"
+                Margin="5"
+                Command="{Binding DeleteStudentCommand}"
+                Content="Delete"
+                FontWeight="Bold" />
+
+            <Button
+                x:Name="ClearBtn"
+                Margin="5"
+                Command="{Binding ClearInputFieldsCommand}"
+                Content="Clear"
+                FontWeight="Bold" />
+
+
+        </StackPanel>
+
+        <DataGrid
+            x:Name="datagrid"
+            Grid.Row="6"
+            Grid.Column="0"
+            Grid.ColumnSpan="2"
+            Margin="5"
+            AutoGenerateColumns="False"
+            Background="Transparent"
+            CanUserAddRows="False"
+            ItemsSource="{Binding Students}"
+            SelectedItem="{Binding SelectedStudent, Mode=TwoWay}">
+            <DataGrid.Columns>
+                <DataGridTextColumn Binding="{Binding Id}" Header="Id" />
+                <DataGridTextColumn Binding="{Binding Name}" Header="Name" />
+                <DataGridTextColumn Binding="{Binding Email}" Header="Email" />
+                <DataGridTextColumn Binding="{Binding Phno}" Header="Phone Number" />
+            </DataGrid.Columns>
+        </DataGrid>
+    </Grid>
+</Window>
